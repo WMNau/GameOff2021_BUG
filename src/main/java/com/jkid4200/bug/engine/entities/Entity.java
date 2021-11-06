@@ -2,6 +2,7 @@ package com.jkid4200.bug.engine.entities;
 
 import com.jkid4200.bug.engine.math.Vector2i;
 import com.jkid4200.bug.engine.textures.Texture;
+import com.jkid4200.bug.engine.utils.FileUtil;
 
 import java.awt.*;
 import java.util.Optional;
@@ -27,7 +28,8 @@ public abstract class Entity {
     this.id = UUID.randomUUID().toString();
     this.bounds = new Rectangle(position.getX(), position.getY(), size.getX(), size.getY());
     this.color = Color.CYAN;
-    this.texture = Optional.of(new Texture(textureName));
+    this.texture =
+        Optional.of(new Texture().toBuilder().image(FileUtil.getTexture(textureName)).build());
   }
 
   public void update() {
